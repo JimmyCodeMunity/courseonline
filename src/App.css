@@ -36,3 +36,59 @@
     transform: rotate(360deg);
   }
 }
+#idea {
+  height: 100%;
+}
+.smooth {
+  /* Example transition property */
+  transition: transform 2.5s ease-in-out;
+}
+.timeline{
+  position: relative;
+  max-width: 1200px;
+  margin: 100px auto;
+}
+.mycontainer{
+  padding: 10px 50px;
+  position: relative;
+  width: 50%;
+  background-color:rgba(0, 0, 0, 0.8);
+}
+.text-box{
+  padding: 20px 30px;
+  background: #ffffff;
+  position: relative;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.left-container{
+  left: 0;
+
+}
+.right-container{
+  left: 50%;
+
+}
+.mycontainer img{
+  width: 40px;
+  height: 40px;
+  border-radius:50%;
+  position: absolute;
+  right: -20px;
+  top: 32px;
+  z-index: 10;
+}
+.right-container img{
+  left: -20px;
+}
+.timeline::after{
+  content: '';
+  width: 6px;
+  position: absolute;
+  background:'#fff';
+  top:0;
+  left: 50%;
+  margin-left: -3px;
+  z-index: -1;
+  height: 100%;
+}
