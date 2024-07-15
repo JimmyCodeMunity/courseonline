@@ -49,7 +49,7 @@ const Courses = () => {
               Pick a course today
             </p>
           </div>
-          <div class="bg-gray-200 p-8 flex md:flex-row flex-col items-center justify-center md:space-x-10 space-y-3">
+          <div class="bg-gray-200 p-8 flex flex-wrap md:flex-row flex-col items-center w-full justify-between md:space-x-3 space-y-3">
             {courses.map((shoe) => {
               return (
                 <a href={`/viewcourse/${shoe._id}`} class="bg-white rounded-lg overflow-hidden shadow-2xl xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">

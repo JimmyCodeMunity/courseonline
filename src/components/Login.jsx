@@ -21,8 +21,8 @@ const Login = () => {
       const success = response.data;
       // localStorage.setItem("user", response.data.admin.fullname);
       // localStorage.setItem("_uid", response.data.admin._id);
-      // localStorage.setItem("email", response.data.admin.email);
-      // localStorage.setItem("token", response.data.token);
+      localStorage.setItem("email", response.data.user.email);
+      localStorage.setItem("token", response.data.token);
       if (success) {
         console.log("user logged in successfully");
         navigate("/");
