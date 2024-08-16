@@ -4,16 +4,16 @@ export const navLinks = [
       name: "Home",
       path: "/",
     },
-    {
-      id: "about",
-      name: "About",
-      path: "/about",
-    },
-    {
-      id: "services",
-      name: "Services",
-      path: "/services",
-    },
+    // {
+    //   id: "about",
+    //   name: "About",
+    //   path: "/about",
+    // },
+    // {
+    //   id: "services",
+    //   name: "Services",
+    //   path: "/services",
+    // },
     {
       id: "courses",
       name: "Courses",

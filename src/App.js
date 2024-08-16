@@ -8,6 +8,8 @@ import CoursesPage from "./pages/CoursesPage";
 import CreateCoursePage from "./pages/CreateCoursePage";
 import ViewCourse from "./pages/ViewCourse";
 import PrivateRoutes from "./context/PrivateRoute";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterScreen />} />
+        
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

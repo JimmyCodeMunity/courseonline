@@ -7,6 +7,19 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [logstate, setLogstate] = useState("");
 
+  const getLoginState = () => {
+    const authenticated = localStorage.getItem("Authenticated");
+    if (authenticated) {
+      setLogstate("loggedin");
+    } else {
+      setLogstate("");
+    }
+  };
+
+  useEffect(() => {
+    getLoginState();
+  }, []);
+
   const [stickyClass, setStickyClass] = useState("relative");
 
   useEffect(() => {
@@ -22,26 +35,24 @@ const Navbar = () => {
       let windowHeight = window.scrollY;
       windowHeight > 200
         ? setStickyClass(
-            "fixed flex-1 navbar top-0 left-0 z-50 bg-primary smooth sm:px-20 px-6"
+            "fixed flex-1 navbar top-0 left-0 z-50 bg-white smooth sm:px-20 px-6"
           )
         : setStickyClass("relative");
     }
   };
 
-  useEffect(() => {
-    const mystate = localStorage.getItem("logstate");
-    setLogstate(mystate);
-  }, []);
-
   const handleLogout = () => {
     // Perform logout actions, such as clearing token from localStorage
     localStorage.removeItem("token");
-    localStorage.removeItem("logstate");
-    localStorage.removeItem("user");
-    console.log("user logged out");
+    localStorage.removeItem("Authenticated");
+    localStorage.removeItem("email");
+    localStorage.removeItem("quid");
+    setLogstate("");
     navigate("/login");
   };
+
   const [toggle, setToggle] = useState(false);
+
   return (
     <nav
       id="navbar"
@@ -69,7 +80,18 @@ const Navbar = () => {
             </Link>
           </li>
         ))}
-        
+        {logstate ? (
+          <li
+            onClick={handleLogout}
+            className="bg-yellow-600 rounded-2xl py-1 px-6 text-black list-none items-center cursor-pointer"
+          >
+            Logout
+          </li>
+        ) : (
+          <li className="bg-yellow-600 rounded-2xl py-1 px-6 text-black list-none items-center">
+            <Link to="/login">Login</Link>
+          </li>
+        )}
       </ul>
 
       <div className="md:hidden justify-end items-center flex">
@@ -77,11 +99,7 @@ const Navbar = () => {
           onClick={() => setToggle((prev) => !prev)}
           className="cursor-pointer"
         >
-          {toggle ? (
-            <X color="black" size={30} />
-          ) : (
-            <AlignLeft color="black" size={30} />
-          )}
+          {toggle ? <X color="black" size={30} /> : <AlignLeft color="black" size={30} />}
         </div>
 
         <div
@@ -100,19 +118,21 @@ const Navbar = () => {
                 <Link to={`${nav.path}`}>{nav.name}</Link>
               </li>
             ))}
-            <li className="text-black list-none items-end">
-              <Link to="/login" className="p-3">
-                Login
-              </Link>
-            </li>
+
+            {logstate ? (
+              <li
+                onClick={handleLogout}
+                className="bg-yellow-600 text-white rounded-2xl py-1 px-6 text-black list-none items-center cursor-pointer mt-4"
+              >
+                Logout
+              </li>
+            ) : (
+              <li className="bg-yellow-600 text-white rounded-2xl py-1 px-6 text-black list-none items-center mt-4">
+                <Link to="/login">Login</Link>
+              </li>
+            )}
           </ul>
         </div>
-      </div>
-
-      <div className="hidden md:block">
-        <li className="bg-yellow-600 rounded-2xl py-1 px-6 text-black list-none items-center">
-          <Link to="/login">Login</Link>
-        </li>
       </div>
     </nav>
   );

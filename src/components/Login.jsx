@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,14 +24,16 @@ const Login = () => {
       // localStorage.setItem("_uid", response.data.admin._id);
       localStorage.setItem("email", response.data.user.email);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("Authenticated", true);
       if (success) {
         console.log("user logged in successfully");
         navigate("/");
         console.log(success)
+        toast.success("user logged in successfully")
       }
     } catch (error) {
       console.log(error);
-      alert("error creating user");
+      toast.error("error creating user");
       setLoading(false);
     }
   };
